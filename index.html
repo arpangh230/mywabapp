@@ -3,277 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>POS ও ওয়েবসাইট কম্বো অফার</title>
+    <title>চূড়ান্ত কম্বো অফার - AGC Solutions</title>
+
+    <meta name="theme-color" content="#0f0f0f">
     <style>
-        /* --- CSS শুরু --- */
+        /* --- CSS শুরু: চূড়ান্ত প্রিমিয়াম ডার্ক মোড ডিজাইন --- */
+        :root {
+            --primary-color: #00bcd4; /* সায়ান (ব্র্যান্ড কালার) */
+            --secondary-color: #ff9800; /* অ্যাম্বার (হাইলাইট) */
+            --highlight-price: #ef5350; /* উজ্জ্বল লাল (দাম) */
+            --bg-dark: #0f0f0f; /* প্রধান ব্যাকগ্রাউন্ড */
+            --bg-card: #1c1c1c; /* কার্ড ব্যাকগ্রাউন্ড */
+            --text-light: #f5f5f5; /* প্রধান লেখা */
+            --font-main: 'Roboto', sans-serif;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: var(--font-main);
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: var(--bg-dark); 
+            color: var(--text-light); 
+            line-height: 1.6;
             text-align: center;
+            scroll-behavior: smooth; 
         }
+        
         .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
-        header h1 {
-            color: #0056b3;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+        
+        /* নেভিগেশন/হেডার */
+        .navbar { background-color: #1a1a1a; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6); padding: 18px 0; }
+        .nav-container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .logo { font-size: 1.6em; font-weight: bold; color: var(--primary-color); }
+        .nav-links a { text-decoration: none; color: var(--text-light); margin-left: 20px; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--secondary-color); }
+
+        /* হিরো সেকশন ও ব্যানার */
+        .hero-section { background-color: var(--bg-card); padding: 70px 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); margin-bottom: 40px; }
+        .hero-section h1 { color: var(--primary-color); font-size: 3.2em; text-shadow: 0 0 5px rgba(0, 188, 212, 0.5); }
+        @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); } 100% { transform: scale(1.01); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); } }
+        .banner-image { width: 100%; max-width: 850px; height: auto; border-radius: 10px; margin: 35px auto; display: block; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); animation: pulse 2s infinite alternate; }
+
+        /* অফার বক্স ও CTA বাটন */
+        .offer-box { background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border: 3px solid var(--secondary-color); padding: 40px; border-radius: 12px; max-width: 700px; margin: 30px auto; box-shadow: 0 0 20px rgba(255, 152, 0, 0.4); }
+        .offer-box .price { font-size: 4em; color: var(--highlight-price); font-weight: 900; }
+        .cta-button { background-color: var(--secondary-color); color: var(--bg-dark); padding: 18px 40px; border-radius: 8px; font-size: 1.4em; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.6); transition: all 0.3s; }
+        .cta-button:hover { background-color: #ffb74d; transform: translateY(-2px); }
+
+
+        /* কেন আমাদের বেছে নেবেন সেকশন */
+        .why-us { padding: 40px 0; background-color: #1a1a1a; margin-top: 40px; border-radius: 12px; }
+        .why-us-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; text-align: left; }
+        .reason-item { background: #232323; padding: 20px; border-left: 4px solid var(--primary-color); border-radius: 6px; transition: transform 0.3s; }
+        .reason-item:hover { transform: scale(1.03); box-shadow: 0 5px 15px rgba(0, 188, 212, 0.2); }
+
+        /* ফর্ম ইনপুট ডিজাইন */
+        #purchaseForm { text-align: left; padding: 30px; border-radius: 10px; margin-top: 20px; }
+        #purchaseForm input, #purchaseForm textarea {
+            width: 100%; padding: 15px; margin-top: 5px; margin-bottom: 15px;
+            border: 2px solid #444; border-radius: 8px; box-sizing: border-box;
+            background-color: #2a2a2a; color: var(--text-light);
+            transition: border-color 0.3s, box-shadow 0.3s;
         }
-        header p {
-            color: #555;
-            font-size: 1.1em;
+        #purchaseForm input:focus, #purchaseForm textarea:focus {
+            border-color: var(--secondary-color); outline: none;
+            box-shadow: 0 0 8px rgba(255, 152, 0, 0.5); 
         }
-        .offer-box {
-            background-color: #e6f7ff;
-            border: 2px solid #0056b3;
-            padding: 30px;
-            margin: 30px 0;
-            border-radius: 8px;
-        }
-        .offer-box h2 {
-            color: #cc0000;
-            font-size: 2em;
-            margin-top: 0;
-        }
-        .offer-box .price {
-            font-size: 3em;
-            color: #cc0000;
-            font-weight: bold;
-            display: block;
-            margin: 10px 0;
-        }
-        .terms {
-            margin-top: 20px;
-            padding: 15px;
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            border-radius: 5px;
-            text-align: left;
-            font-size: 0.9em;
-        }
-        /* নতুন ফর্মের জন্য CSS */
-        #purchaseForm, #invoice {
-            text-align: left;
-            padding: 20px;
-            border: 1px solid #ddd;
-            margin-top: 20px;
-            border-radius: 5px;
-            display: none; /* প্রাথমিকভাবে লুকিয়ে রাখা */
-        }
-        #purchaseForm label {
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        #purchaseForm input[type="text"],
-        #purchaseForm input[type="tel"],
-        #purchaseForm textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+
+        /* অর্ডার নিশ্চিত করুন বাটন */
         .submit-button {
-            background-color: #ffc107;
-            color: #333;
-            padding: 10px 20px;
+            width: 100%; 
+            background: linear-gradient(90deg, var(--highlight-price) 0%, #c04040 100%); 
+            color: white;
+            padding: 15px 20px;
             border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
+            border-radius: 8px;
+            font-size: 1.3em;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            box-shadow: 0 4px 15px rgba(239, 83, 80, 0.4);
+            transition: all 0.3s ease;
         }
         .submit-button:hover {
-            background-color: #e0a800;
+            background: linear-gradient(90deg, #c04040 0%, var(--highlight-price) 100%);
+            box-shadow: 0 6px 20px rgba(239, 83, 80, 0.6);
+            transform: translateY(-2px);
         }
-        .cta-button {
-            background-color: #28a745;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-        }
-        .cta-button:hover {
-            background-color: #218838;
-        }
-        /* ইনভয়েস স্টাইল */
-        #invoice h3 {
-            color: #0056b3;
-            border-bottom: 2px solid #0056b3;
-            padding-bottom: 10px;
-        }
-        #invoice table {
+
+        /* ইনভয়েস ডিজাইন */
+        #invoice { padding: 30px; border: 2px solid var(--primary-color); border-radius: 10px; }
+        .invoice-details table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .invoice-details th, .invoice-details td { border: 1px solid #444; padding: 12px; text-align: left; }
+        .invoice-details th { background-color: #2a2a2a; color: var(--text-light); }
+        .invoice-total { background-color: #2a2a2a; font-weight: bold; font-size: 1.1em; }
+        .print-button { background-color: #4a4a4a; color: white; padding: 10px 20px; border-radius: 5px; transition: background-color 0.3s; }
+
+        /* ফ্লোটিং চ্যাট বাটন */
+        .live-chat-button { position: fixed; bottom: 30px; right: 30px; background-color: var(--secondary-color); color: var(--bg-dark); padding: 15px 20px; border-radius: 50px; font-size: 1.2em; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 152, 0, 0.8); z-index: 1000; animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
+
+        /* ফ্লোটিং অফার বার */
+        .sticky-offer-bar {
+            position: fixed; /* sticky থেকে fixed করা হলো যাতে স্ক্রল করার সময় স্থির থাকে */
+            top: 0;
+            left: 0;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
+            background: rgba(0, 0, 0, 0.95);
+            color: var(--text-light);
+            padding: 10px 0;
+            z-index: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid var(--secondary-color);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            font-size: 1.1em;
         }
-        #invoice th, #invoice td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
+        .sticky-offer-bar p { margin: 0 15px; }
+        .sticky-offer-bar .offer-price { color: var(--highlight-price); font-weight: bold; }
+        .sticky-offer-bar .offer-button { background-color: var(--secondary-color); color: var(--bg-dark); padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background-color 0.3s; }
+
+        /* প্রিন্ট মোড (ফাইনাল ফিক্স) */
+        @media print {
+            .navbar, .cta-button, .print-button, .terms, .live-chat-button, #purchaseForm, footer, .sticky-offer-bar { display: none !important; }
+            body, #invoice { background-color: white !important; color: black !important; padding: 0 !important; margin: 0 !important; }
+            .invoice-details th { background-color: #f0f0f0 !important; color: black !important; }
+            .invoice-total { background-color: #e6e6e6 !important; color: black !important; }
+            .invoice-header h3 { color: black !important; }
         }
-        #invoice th {
-            background-color: #f2f2f2;
-        }
-        .invoice-total {
-            font-weight: bold;
-            background-color: #e6f7ff;
-        }
-        /* --- CSS শেষ --- */
+        /* --- CSS শেষ: চূড়ান্ত প্রিমিয়াম ডার্ক মোড ডিজাইন --- */
     </style>
 </head>
 <body>
+
+    <div class="sticky-offer-bar" id="stickyOfferBar">
+        <p>🎉 চূড়ান্ত সার্ভিস চার্জ: <span class="offer-price">৳ ১০,২০০</span> (১৫% ছাড় সহ)</p>
+        <a href="#purchaseForm" class="offer-button">অর্ডার করুন</a>
+    </div>
+    
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AGC Solutions</div>
+            <div class="nav-links">
+                <a href="#why-us">কেন আমরা?</a>
+                <a href="#features">ফিচার্স</a>
+                <a href="#offer">অফার</a>
+                <a href="#testimonials">মতামত</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>🚀 ডিজিটাল ব্যবসা সলিউশন কম্বো</h1>
-            <p>আপনার ব্যবসাকে দ্রুত এগিয়ে নিয়ে যেতে POS সফটওয়্যার ও ওয়েবসাইট একসাথে!</p>
+        <header class="hero-section">
+            <h1>স্মার্ট ব্যবসার জন্য এক ছাদের নিচে সমাধান</h1>
+            <p>আপনার ব্যবসাকে আধুনিক করুন: **POS সফটওয়্যার ও প্রফেশনাল ওয়েবসাইট কম্বো প্যাক**</p>
+            
+            <img src="https://i.postimg.cc/BvVdc4ph/1763209336409.jpg" alt="Special Combo Offer Banner" class="banner-image">
         </header>
         
-        <div class="offer-box">
-            <h2>🔥 বিশেষ সমিমিত অফার!</h2>
-            <p>POS সফটওয়্যার এবং সম্পূর্ণ ওয়েবসাইট পান</p>
-            <span class="price">৳ ৮,০০০</span>
-            <p>আর দেরি না করে এখনি আপনার কম্বো প্যাক নিশ্চিত করুন!</p>
+        <div class="offer-box" id="offer">
+            <h2>🎉 সীমিত সময়ের জন্য বিশেষ ছাড়!</h2>
+            <p class="original-price">প্রকৃত মূল্য: ৳ ১২,০০০</p>
+            <span class="discount-tag">🔥 ১৫% ছাড়!</span>
+            <p style="font-size: 1.4em; margin-top: 10px;">আপনার চূড়ান্ত সার্ভিস চার্জ মাত্র:</p>
+            <span class="price">৳ ১০,২০০</span>
             <button class="cta-button" id="buyNowButton">এখনি কিনুন</button>
         </div>
+
+        <section class="why-us" id="why-us">
+            <h3>⭐ কেন আপনি AGC Solutions বেছে নেবেন?</h3>
+            <div class="why-us-grid">
+                <div class="reason-item">
+                    <h4><span>🛠️</span> সহজ সেটআপ</h4>
+                    <p>১০০% সহজে সেটআপ এবং ব্যবহারের জন্য তৈরি। কোনো টেকনিক্যাল জ্ঞানের প্রয়োজন নেই।</p>
+                </div>
+                <div class="reason-item">
+                    <h4><span>🌐</span> ভবিষ্যৎ-প্রমাণ</h4>
+                    <p>ক্লাউড-ভিত্তিক কাঠামো, যা আপনার ব্যবসার সাথে সাথে স্কেল করতে সক্ষম।</p>
+                </div>
+                <div class="reason-item">
+                    <h4><span>💰</span> সাশ্রয়ী মূল্য</h4>
+                    <p>বাজারের সেরা দাম এবং কোনো লুকানো মাসিক ফি নেই (সার্ভিস চার্জের ক্ষেত্রে)।</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="features" id="features">
+            <h3>কম্বো প্যাকে কী কী পাচ্ছেন?</h3>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h4>সফটওয়্যার: POS সিস্টেম</h4>
+                    <ul>
+                        <li>দ্রুত বিলিং ও ইনভেন্টরি ম্যানেজমেন্ট।</li>
+                        <li>দৈনিক, মাসিক সেলস রিপোর্ট।</li>
+                        <li>স্টক ট্র্যাকিং এবং সতর্কতা।</li>
+                        <li>কর্মচারী অ্যাক্সেস নিয়ন্ত্রণ।</li>
+                    </ul>
+                </div>
+                <div class="feature-item">
+                    <h4>ওয়েবসাইট: প্রফেশনাল ডিজাইন</h4>
+                    <ul>
+                        <li>আধুনিক ও মোবাইল-রেসপনসিভ ডিজাইন।</li>
+                        <li>আপনার ব্র্যান্ডের লোগো ও কালার স্কিম।</li>
+                        <li>৫টি স্ট্যাটিক পেজ (যেমন: হোম, কন্টাক্ট, সার্ভিস)।</li>
+                        <li>এসইও ফ্রেন্ডলি কাঠামো।</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section class="testimonial-section" id="testimonials">
+            <h3>🤝 আমাদের সন্তুষ্ট গ্রাহকদের মতামত</h3>
+            <div class="testimonial-item">
+                "AGC Solutions-এর এই কম্বো প্যাকেজটি আমাদের ব্যবসাকে দ্রুত ডিজিটালাইজড করেছে। POS সফটওয়্যারটি সত্যিই কাজের।"
+                <p><strong>— মোঃ জাহিদুর রহমান, প্রোপ্রাইটর, জাহিদ ট্রেডার্স</strong></p>
+            </div>
+        </section>
+
 
         <div id="purchaseForm">
             <h3>কম্বো প্যাক কেনার জন্য আপনার তথ্য দিন</h3>
             <form id="purchaseDetailsForm">
                 <label for="name">পুরো নাম:</label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" required placeholder="আপনার পুরো নাম দিন">
 
                 <label for="phone">ফোন নম্বর:</label>
-                <input type="tel" id="phone" required>
+                <input type="tel" id="phone" required placeholder="আপনার ফোন নম্বর দিন">
 
                 <label for="address">ঠিকানা:</label>
-                <textarea id="address" rows="3" required></textarea>
+                <textarea id="address" rows="3" required placeholder="আপনার ঠিকানা দিন"></textarea>
 
                 <button type="submit" class="submit-button">অর্ডার নিশ্চিত করুন</button>
             </form>
         </div>
 
         <div id="invoice">
-            <h3>ইনভয়েস/অর্ডার নিশ্চিতকরণ</h3>
-            <p>আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে। বিস্তারিত নিচে দেওয়া হলো:</p>
-            <p style="color:red; font-weight:bold;">⚠️ ইনভয়েস পাওয়ার জন্য, অনুগ্রহ করে পরবর্তী উইন্ডোতে WhatsApp বার্তাটি সেন্ড করুন।</p>
+            <div class="invoice-header">
+                <h3>AGC Solutions - ইনভয়েস/অর্ডার নিশ্চিতকরণ</h3>
+                <p>তারিখ: <span id="invoiceDate"></span></p>
+            </div>
+            
+            <p style="color:var(--highlight-price); font-weight:bold;">⚠️ ইনভয়েস ও পরবর্তী ধাপ জানার জন্য, অনুগ্রহ করে WhatsApp বার্তাটি সেন্ড করুন।</p>
+            
             <div id="invoiceDetails">
-                </div>
+            </div>
+            
+            <button class="print-button" onclick="printInvoice()">ইনভয়েস প্রিন্ট/PDF করুন</button>
         </div>
 
-        <div class="terms">
-            <h3>⚠️ গুরুত্বপূর্ণ শর্তাবলী:</h3>
+        <div class="terms" id="terms">
+            <h3>⚠️ গুরুত্বপূর্ণ শর্তাবলী ও মূল্য সংক্রান্ত স্বচ্ছতা:</h3>
             <ul>
-                <li>৳৮,০০০ টাকা শুধুমাত্র **সফটওয়্যার এবং ওয়েবসাইটের তৈরির মূল্য (Service Charge)**।</li>
-                <li>**ডোমেন (Domain)**, **হোস্টিং (Hosting)**, এবং **ডেটাবেস/সার্ভার চার্জ** এই অফারে **অন্তর্ভুক্ত নয়** এবং এগুলি **আলাদাভাবে** চার্জ করা হবে।</li>
-                <li>অফারটি সীমিত সময়ের জন্য বৈধ।</li>
+                <li>৳১০,২০০ টাকা হলো **১৫% ছাড়ের পর চূড়ান্ত সার্ভিস চার্জ**।</li>
+                <li>**ডোমেন, হোস্টিং, এবং ডেটাবেস/সার্ভার চার্জ** এই অফারে **অন্তর্ভুক্ত নয়**। এই খরচগুলি ব্যবহারের ভিত্তিতে **আলাদাভাবে** চার্জ করা হবে।</li>
             </ul>
         </div>
     </div>
+    
+    <a href="https://wa.me/8801893398035" target="_blank" class="live-chat-button">
+        💬 সাপোর্ট/যোগাযোগ
+    </a>
+
+    <footer>
+        <div class="nav-container">
+            <p>&copy; 2025 AGC Solutions. সর্বস্বত্ব সংরক্ষিত।</p>
+        </div>
+    </footer>
 
     <script>
-        /* --- JavaScript শুরু --- */
+        /* --- JavaScript: চূড়ান্ত ফিউচার ও ভ্যালিডেশন --- */
+        
+        // PDF/প্রিন্ট ফাংশন
+        function printInvoice() {
+            window.print();
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            // মূল্য ও ছাড়ের ভ্যালু 
+            const BASE_PRICE = 12000;
+            const DISCOUNT_PERCENTAGE = 15;
+            const FINAL_PRICE = BASE_PRICE * (1 - DISCOUNT_PERCENTAGE / 100); 
+
             const buyNowButton = document.getElementById('buyNowButton');
             const purchaseFormDiv = document.getElementById('purchaseForm');
             const purchaseDetailsForm = document.getElementById('purchaseDetailsForm');
             const invoiceDiv = document.getElementById('invoice');
             const invoiceDetailsDiv = document.getElementById('invoiceDetails');
+            const stickyOfferBar = document.getElementById('stickyOfferBar');
+            const nameInput = document.getElementById('name');
+            const phoneInput = document.getElementById('phone');
 
-            // ১. বাটন ক্লিক করলে ফর্ম দেখান
+            // 1. 💾 লোকাল স্টোরেজ থেকে ডেটা লোড
+            if (localStorage.getItem('userName')) {
+                nameInput.value = localStorage.getItem('userName');
+            }
+            if (localStorage.getItem('userPhone')) {
+                phoneInput.value = localStorage.getItem('userPhone');
+            }
+            
+            // 2. 🎯 স্ক্রল ইভেন্টের মাধ্যমে স্টিকি বার দেখান/লুকান
+            const offerBox = document.getElementById('offer');
+            const threshold = offerBox.offsetTop + offerBox.offsetHeight; // অফার বক্স শেষ হওয়ার পর দেখাবে
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > threshold && window.innerWidth > 768) { // ছোট স্ক্রিনে হাইড
+                    stickyOfferBar.style.display = 'flex'; 
+                } else {
+                    stickyOfferBar.style.display = 'none';
+                }
+            });
+
+
+            // 3. ফর্ম বাটন ক্লিক এবং ডিসপ্লে লজিক
             buyNowButton.addEventListener('click', function() {
                 purchaseFormDiv.style.display = 'block';
                 buyNowButton.style.display = 'none'; 
+                purchaseFormDiv.scrollIntoView({ behavior: 'smooth' });
             });
 
-            // ২. ফর্ম সাবমিশন হ্যান্ডেল করুন
+            // 4. ফর্ম সাবমিশন ও উন্নত ভ্যালিডেশন
             purchaseDetailsForm.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                // ডেটা সংগ্রহ করুন
-                const name = document.getElementById('name').value;
-                const phone = document.getElementById('phone').value;
+                // উন্নত ভ্যালিডেশন (ফোন নম্বর কমপক্ষে ১০ ডিজিট)
+                const phoneValue = phoneInput.value.replace(/[^0-9]/g, ''); // শুধু সংখ্যা রাখা হলো
+                if (phoneValue.length < 10) {
+                    alert("⚠️ অনুগ্রহ করে একটি সঠিক ফোন নম্বর দিন (কমপক্ষে ১০ ডিজিট)।");
+                    phoneInput.focus();
+                    return; 
+                }
+                
+                // ডেটা সংগ্রহ ও লোকাল স্টোরেজে সেভ
+                const name = nameInput.value;
+                const phone = phoneValue;
                 const address = document.getElementById('address').value;
-                const orderId = 'POS-WEB-' + Math.floor(Math.random() * 90000 + 10000); // 5-digit Order ID
+                const orderId = 'AGC-' + Math.floor(Math.random() * 90000 + 10000); 
 
-                // ইনভয়েসের HTML তৈরি করুন
+                localStorage.setItem('userName', name);
+                localStorage.setItem('userPhone', phone);
+                
+                document.getElementById('invoiceDate').innerText = new Date().toLocaleDateString('bn-BD');
+
+                // ইনভয়েসের HTML তৈরি করুন 
                 const invoiceHTML = `
-                    <p><strong>অর্ডার আইডি:</strong> ${orderId}</p>
-                    <p><strong>গ্রাহকের নাম:</strong> ${name}</p>
-                    <p><strong>ফোন নম্বর:</strong> ${phone}</p>
-                    <p><strong>ঠিকানা:</strong> ${address}</p>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>পণ্য/পরিষেবার নাম</th>
-                                <th>পরিমাণ</th>
-                                <th>ইউনিট মূল্য (৳)</th>
-                                <th>মোট (৳)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>POS সফটওয়্যার ও ওয়েবসাইট কম্বো প্যাক (সার্ভিস চার্জ)</td>
-                                <td>১</td>
-                                <td>৮,০০০</td>
-                                <td>৮,০০০</td>
-                            </tr>
-                            <tr>
-                                <td colspan="3" style="text-align:right;" class="invoice-total">মোট প্রদেয় (সার্ভিস চার্জ)</td>
-                                <td class="invoice-total">৳ ৮,০০০</td>
-                            </tr>
-                            <tr>
-                                <td colspan="4" style="font-size:0.9em; color:#cc0000;">
-                                    **অন্যান্য খরচ (ডোমেন, হোস্টিং, ডেটাবেস) অন্তর্ভুক্ত নয়। আপনার সাথে শীঘ্রই যোগাযোগ করা হবে।**
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="invoice-details">
+                        <p><strong>অর্ডার আইডি:</strong> ${orderId}</p>
+                        <p><strong>গ্রাহকের নাম:</strong> ${name}</p>
+                        <p><strong>ফোন নম্বর:</strong> ${phone}</p>
+                        <p><strong>ঠিকানা:</strong> ${address}</p>
+                        
+                        <table>
+                            <thead>
+                                <tr><th>পণ্য/পরিষেবার নাম</th><th>ইউনিট মূল্য (৳)</th><th>ছাড় (%)</th><th>চূড়ান্ত মূল্য (৳)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>POS সফটওয়্যার ও ওয়েবসাইট কম্বো প্যাক (সার্ভিস চার্জ)</td>
+                                    <td>${BASE_PRICE.toLocaleString('bn-BD')}</td>
+                                    <td>${DISCOUNT_PERCENTAGE}%</td>
+                                    <td>${FINAL_PRICE.toLocaleString('bn-BD')}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="text-align:right;" class="invoice-total">মোট প্রদেয় (সার্ভিস চার্জ)</td>
+                                    <td class="invoice-total">৳ ${FINAL_PRICE.toLocaleString('bn-BD')}</td>
+                                </tr>
+                                <tr><td colspan="4" style="font-size:0.9em; color:var(--highlight-price);">**ডোমেন, হোস্টিং, ডেটাবেস চার্জ এই মূল্যের বাইরে।**</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 `;
                 
-                // ৩. WhatsApp মেসেজ তৈরি এবং পাঠানো (নতুন কোড)
-                
-                // WhatsApp URL-এর জন্য ফোন নম্বর: 01893398035 এর জন্য দেশের কোডসহ (+880) 
+                // WhatsApp মেসেজ তৈরি এবং পাঠানো
                 const whatsappNumber = '8801893398035'; 
-
-                // WhatsApp এ পাঠানোর জন্য বার্তা তৈরি 
-                const message = `*নতুন কম্বো অর্ডার নিশ্চিতকরণ*\n\nঅর্ডার আইডি: ${orderId}\nগ্রাহকের নাম: ${name}\nফোন নম্বর: ${phone}\nঠিকানা: ${address}\n\nপরিষেবা: POS সফটওয়্যার ও ওয়েবসাইট কম্বো প্যাক\nপ্রদেয় (সার্ভিস চার্জ): ৳ 8,000`;
-                
-                // URL তৈরি 
+                const message = `*নতুন কম্বো অর্ডার নিশ্চিতকরণ (চূড়ান্ত ভার্সন)*\n\nঅর্ডার আইডি: ${orderId}\nগ্রাহকের নাম: ${name}\nফোন নম্বর: ${phone}\n\nপরিষেবা: POS সফটওয়্যার ও ওয়েবসাইট কম্বো প্যাক\nচূড়ান্ত প্রদেয় (সার্ভিস চার্জ): ৳ ${FINAL_PRICE.toLocaleString('bn-BD')}`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
-                // নতুন ট্যাব/উইন্ডোতে WhatsApp খুলুন
                 window.open(whatsappUrl, '_blank');
 
-                // ৪. ফর্ম লুকিয়ে ইনভয়েস দেখান
+                // ফর্ম লুকিয়ে ইনভয়েস দেখান
                 purchaseFormDiv.style.display = 'none';
                 invoiceDetailsDiv.innerHTML = invoiceHTML;
                 invoiceDiv.style.display = 'block';
-
-                // তথ্য ক্লিয়ার করুন (ঐচ্ছিক)
+                invoiceDiv.scrollIntoView({ behavior: 'smooth' }); 
+                
                 purchaseDetailsForm.reset();
+                localStorage.removeItem('userName'); 
+                localStorage.removeItem('userPhone');
             });
         });
         /* --- JavaScript শেষ --- */
     </script>
 </body>
-        </html>
+            </html>
